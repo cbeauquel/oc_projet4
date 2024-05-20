@@ -1,6 +1,6 @@
 <?php
 
-$oeuvres = [
+/*$oeuvres = [
     [
         'id' => 1,
         'titre' => 'Dodomu',
@@ -107,4 +107,5 @@ $oeuvres = [
         'image' => 'img/steve-johnson-3.png' // peut être modifié par une URL comme http://localhost/...
     ],
 
-];
+];*/
+?>
