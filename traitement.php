@@ -12,11 +12,9 @@ if (
     || strlen($addOeuvre['description']) < 3
 )  {
     echo '<p class="alert">Il faut une url d\'image et un message valides pour ajouter votre oeuvre.<br>
-    <a href="index.php">Retour</a></p>
-    ';
-    require 'footer.php';
+    <a href="index.php">Retour</a></p>';
 }
-
+else {
 /*requête d'ajout d'une oeuvre en BDD*/
     $title = strip_tags($addOeuvre['titre']);
     $author = strip_tags($addOeuvre['artiste']);
@@ -30,8 +28,7 @@ $oeuvreAdd->execute([
     'author' => $author,
     'image' => $image,
     ]);
-?>
-<p class="msg"><strong>Félicitation !</strong> <br>Votre oeuvre a été correctement ajoutée au site<br>
-<a href="oeuvre.php?id=<?php echo $mysqlClient->lastInsertId();?>">Retour</a></p>
-<?php require 'footer.php'; ?>
-
+echo '<p class="msg"><strong>Félicitation !</strong> <br>Votre oeuvre a été correctement ajoutée au site<br>
+      <a href="oeuvre.php?id=' . $mysqlClient->lastInsertId() . '">Retour</a></p>';
+}
+require 'footer.php'; ?>
