@@ -9,6 +9,7 @@ if (
     || !filter_var($addOeuvre['image'], FILTER_VALIDATE_URL)
     || empty($addOeuvre['description'])
     || trim($addOeuvre['description']) === ''
+    || strlen($addOeuvre['description']) < 3
 )  {
     echo '<p class="alert">Il faut une url d\'image et un message valides pour ajouter votre oeuvre.<br>
     <a href="index.php">Retour</a></p>
@@ -17,9 +18,9 @@ if (
     require 'footer.php';
     return;
 }
-    $title = $addOeuvre['titre'];
-    $author = $addOeuvre['artiste'];
-    $description = $addOeuvre['description'];
+    $title = strip_tags($addOeuvre['titre']);
+    $author = strip_tags($addOeuvre['artiste']);
+    $description = strip_tags($addOeuvre['description']);
     $image = $addOeuvre['image'];
 ?>
 <p class="msg"><strong>Félicitation !</strong> <br>Votre oeuvre a été correctement ajoutée au site<br>
@@ -35,5 +36,4 @@ $oeuvreAdd->execute([
     'author' => $author,
     'image' => $image,
 ]);
-
 ?>
