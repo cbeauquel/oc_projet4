@@ -14,26 +14,24 @@ if (
     echo '<p class="alert">Il faut une url d\'image et un message valides pour ajouter votre oeuvre.<br>
     <a href="index.php">Retour</a></p>
     ';
-
     require 'footer.php';
-    return;
 }
+
+/*requête d'ajout d'une oeuvre en BDD*/
     $title = strip_tags($addOeuvre['titre']);
     $author = strip_tags($addOeuvre['artiste']);
     $description = strip_tags($addOeuvre['description']);
     $image = $addOeuvre['image'];
-?>
-<p class="msg"><strong>Félicitation !</strong> <br>Votre oeuvre a été correctement ajoutée au site<br>
-<a href="index.php">Retour</a></p>
-<?php require 'footer.php'; ?>
 
-<?php
-/*requête d'ajout d'une oeuvre en BDD*/
 $oeuvreAdd = $mysqlClient->prepare('INSERT INTO `oeuvres` (`id`, `title`, `description`, `author`, `image`) VALUES (NULL, :title, :description, :author, :image)');
 $oeuvreAdd->execute([
     'title' => $title,
     'description' => $description,
     'author' => $author,
     'image' => $image,
-]);
+    ]);
 ?>
+<p class="msg"><strong>Félicitation !</strong> <br>Votre oeuvre a été correctement ajoutée au site<br>
+<a href="oeuvre.php?id=<?php echo $mysqlClient->lastInsertId();?>">Retour</a></p>
+<?php require 'footer.php'; ?>
+
