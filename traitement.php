@@ -31,4 +31,6 @@ $oeuvreAdd->execute([
 echo '<p class="msg"><strong>Félicitation !</strong> <br>Votre oeuvre a été correctement ajoutée au site<br>
       <a href="oeuvre.php?id=' . $mysqlClient->lastInsertId() . '">Retour</a></p>';
 }
+
+
 require 'footer.php'; ?>

@@ -17,4 +17,7 @@ catch (Exception $e) {
 $oeuvresStatement = $mysqlClient->prepare('SELECT * FROM oeuvres ORDER BY id ASC');
 $oeuvresStatement->execute();
 $oeuvres = $oeuvresStatement->fetchAll();
+
+
+
 ?>

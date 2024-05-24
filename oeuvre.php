@@ -17,6 +17,8 @@
     if(is_null($oeuvre)) {
         header('Location: index.php');
     }
+    $description = str_replace("\"", "&quot", $oeuvre['description']);
+
 ?>
 <article id="detail-oeuvre">
     <div id="img-oeuvre">
@@ -28,6 +30,15 @@
         <p class="description-complete">
              <?= $oeuvre['description'] ?>
         </p>
+        <form action="modifier.php" method="POST">
+            <input type="hidden" id="id" name="id" value="<?php echo $oeuvre['id'];?>">
+            <input type="hidden" id="title" name="title" value="<?php echo $oeuvre['title'];?>">
+            <input type="hidden" id="author" name="author" value="<?php echo $oeuvre['author'];?>">
+            <input type="hidden" id="description" name="description" value="<?php echo $description;?>">
+            <input type="hidden" id="image" name="image" value="<?php echo $oeuvre['image'];?>">
+            <button type="submit">Modifier l'œuvre</button>
+        </form>
+        <button>Supprimer</button>
     </div>
 </article>
 <?php require 'footer.php'; ?>
