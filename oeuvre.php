@@ -38,7 +38,10 @@
             <input type="hidden" id="image" name="image" value="<?php echo $oeuvre['image'];?>">
             <button type="submit">Modifier l'œuvre</button>
         </form>
-        <button>Supprimer</button>
+        <form action="supprimer.php" method="POST">
+            <input type="hidden" id="id" name="id" value="<?php echo $oeuvre['id'];?>">
+            <button type="submit">Supprimer l'œuvre</button>
+        </form>
     </div>
 </article>
 <?php require 'footer.php'; ?>
