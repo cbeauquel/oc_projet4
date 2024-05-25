@@ -30,18 +30,20 @@
         <p class="description-complete">
              <?= $oeuvre['description'] ?>
         </p>
-        <form action="modifier.php" method="POST">
-            <input type="hidden" id="id" name="id" value="<?php echo $oeuvre['id'];?>">
-            <input type="hidden" id="title" name="title" value="<?php echo $oeuvre['title'];?>">
-            <input type="hidden" id="author" name="author" value="<?php echo $oeuvre['author'];?>">
-            <input type="hidden" id="description" name="description" value="<?php echo $description;?>">
-            <input type="hidden" id="image" name="image" value="<?php echo $oeuvre['image'];?>">
-            <button type="submit">Modifier l'œuvre</button>
-        </form>
-        <form action="supprimer.php" method="POST">
-            <input type="hidden" id="id" name="id" value="<?php echo $oeuvre['id'];?>">
-            <button type="submit">Supprimer l'œuvre</button>
-        </form>
+        <div class="boutons">
+            <form action="modifier.php" method="POST">
+                    <input type="hidden" id="id" name="id" value="<?php echo $oeuvre['id'];?>">
+                    <input type="hidden" id="title" name="title" value="<?php echo $oeuvre['title'];?>">
+                    <input type="hidden" id="author" name="author" value="<?php echo $oeuvre['author'];?>">
+                    <input type="hidden" id="description" name="description" value="<?php echo $description;?>">
+                    <input type="hidden" id="image" name="image" value="<?php echo $oeuvre['image'];?>">
+                    <input id="modifier" type="submit" value="Modifier l'œuvre" name="submit">
+            </form>
+            <form action="supprimer.php" method="POST">
+                    <input type="hidden" id="id" name="id" value="<?php echo $oeuvre['id'];?>">
+                    <input id="supprimer" type="submit" value="Supprimer l'œuvre" name="submit">
+            </form>
+        </div>
     </div>
 </article>
 <?php require 'footer.php'; ?>

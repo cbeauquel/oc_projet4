@@ -19,6 +19,6 @@
     </div>
 
     <input type="submit" value="Valider" name="submit">
-</form>
+</form>    
 
 <?php require 'footer.php'; ?>

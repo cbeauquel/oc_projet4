@@ -22,7 +22,7 @@ require 'bdd.php';
         <textarea type="text" name="description" id="description"><?php echo $_POST['description'];?></textarea>
     </div>
 
-    <input type="submit" value="Valider" name="submit">
+    <input id="modifier" type="submit" value="Valider" name="submit">
 </form>
 
 <?php require 'footer.php'; ?>
