@@ -45,11 +45,32 @@ footer {
     font-size: 12px;
 }
 
-
-
 #liste-oeuvres {
     display: flex;
     flex-wrap: wrap;
+}
+
+.msg {
+    text-align:center;
+    font-size:2em;
+}
+
+.msg a{
+    text-decoration:underline;
+    color:black;
+    font-size:0.75em;
+}
+
+.alert {
+    text-align:center;
+    font-size:1.5em;
+    color:red;
+}
+
+.alert a{
+    text-decoration:underline;
+    color:black;
+    font-size:0.75em;
 }
 
 .oeuvre {
@@ -122,6 +143,12 @@ form textarea {
     height: 150px;
 }
 
+.boutons{
+    display:flex;
+    width:100%;
+    justify-content: space-between;
+}
+
 input[type="submit"] {
     margin: auto;
     color: white;
@@ -133,6 +160,33 @@ input[type="submit"] {
     padding: 7px;
 }
 
+#modifier {
+    margin: auto;
+    color: white;
+    background: rgb(216, 177, 2);
+    border: none;
+    width:auto;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    padding: 7px;
+    cursor:pointer;
+    border-radius:10px;
+    filter:drop-shadow(1px 1px 2px #dedede);
+}
+
+#supprimer {
+    margin: auto;
+    color: white;
+    background: rgb(255, 60, 60);
+    border: none;
+    width:auto;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    padding: 7px;
+    cursor:pointer;
+    border-radius:10px;
+    filter:drop-shadow(1px 1px 2px #4b0000c0);
+}
 
 @media (max-width: 850px) {
     .oeuvre {

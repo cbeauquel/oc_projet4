@@ -1,40 +1,49 @@
 <?php
     require 'header.php';
-    require 'oeuvres.php';
-
+    require 'bdd.php';
     // Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
     if(empty($_GET['id'])) {
         header('Location: index.php');
     }
-
-    $oeuvre = null;
-
-    // On parcourt les oeuvres du tableau afin de rechercher celle qui a l'id précisé dans l'URL
-    foreach($oeuvres as $o) {
-        // intval permet de transformer l'id de l'URL en un nombre (exemple : "2" devient 2)
-        if($o['id'] === intval($_GET['id'])) {
+  
+    // On parcourt les oeuvres sorties de la requête SQL afin de rechercher celle qui a l'id précisé dans l'URL
+      foreach($oeuvres as $o){
+        if ($o['id'] === $_GET['id']){
             $oeuvre = $o;
-            break; // On stoppe le foreach si on a trouvé l'oeuvre
+            break;
         }
     }
-
     // Si aucune oeuvre trouvé, on redirige vers la page d'accueil
     if(is_null($oeuvre)) {
         header('Location: index.php');
     }
-?>
+    $description = str_replace("\"", "&quot", $oeuvre['description']);
 
+?>
 <article id="detail-oeuvre">
     <div id="img-oeuvre">
-        <img src="<?= $oeuvre['image'] ?>" alt="<?= $oeuvre['titre'] ?>">
+        <img src="<?= $oeuvre['image'] ?>" alt="<?= $oeuvre['title'] ?>">
     </div>
     <div id="contenu-oeuvre">
-        <h1><?= $oeuvre['titre'] ?></h1>
-        <p class="description"><?= $oeuvre['artiste'] ?></p>
+        <h1><?= $oeuvre['title'] ?></h1>
+        <p class="description"><?= $oeuvre['author'] ?></p>
         <p class="description-complete">
              <?= $oeuvre['description'] ?>
         </p>
+        <div class="boutons">
+            <form action="modifier.php" method="POST">
+                    <input type="hidden" id="id" name="id" value="<?php echo $oeuvre['id'];?>">
+                    <input type="hidden" id="title" name="title" value="<?php echo $oeuvre['title'];?>">
+                    <input type="hidden" id="author" name="author" value="<?php echo $oeuvre['author'];?>">
+                    <input type="hidden" id="description" name="description" value="<?php echo $description;?>">
+                    <input type="hidden" id="image" name="image" value="<?php echo $oeuvre['image'];?>">
+                    <input id="modifier" type="submit" value="Modifier l'œuvre" name="submit">
+            </form>
+            <form action="supprimer.php" method="POST">
+                    <input type="hidden" id="id" name="id" value="<?php echo $oeuvre['id'];?>">
+                    <input id="supprimer" type="submit" value="Supprimer l'œuvre" name="submit">
+            </form>
+        </div>
     </div>
 </article>
-
 <?php require 'footer.php'; ?>
