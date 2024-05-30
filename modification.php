@@ -1,30 +1,30 @@
 <?php 
-require 'header.php';
-require 'bdd.php';
+require ('templates/header.php');
+require ('src/model.php');
 /* Requête de mofification d'une oeuvre*/
 
-$updOeuvre = $_POST;
+$updartwork = $_POST;
 /* Contrôle des données de formulaire*/
 if (
-    !isset($updOeuvre['titre'])
-    || !filter_var($updOeuvre['image'], FILTER_VALIDATE_URL)
-    || empty($updOeuvre['description'])
-    || trim($updOeuvre['description']) === ''
-    || strlen($updOeuvre['description']) < 3
+    !isset($updartwork['titre'])
+    || !filter_var($updartwork['image'], FILTER_VALIDATE_URL)
+    || empty($updartwork['description'])
+    || trim($updartwork['description']) === ''
+    || strlen($updartwork['description']) < 3
 )  {
     echo '<p class="alert">Il faut une url d\'image et un message valides pour modifier l\'oeuvre.<br>
     <a href="index.php">Retour</a></p>';
 }
 else {
 /*requête de modification d'une oeuvre en BDD*/
-    $title = strip_tags($updOeuvre['titre']);
-    $author = strip_tags($updOeuvre['artiste']);
-    $description = strip_tags($updOeuvre['description']);
-    $image = $updOeuvre['image'];
-    $id = $updOeuvre['id'];
+    $title = strip_tags($updartwork['titre']);
+    $author = strip_tags($updartwork['artiste']);
+    $description = strip_tags($updartwork['description']);
+    $image = $updartwork['image'];
+    $id = $updartwork['id'];
 
-$oeuvreUpd = $mysqlClient->prepare('UPDATE `oeuvres` SET title = :title, description = :description, author = :author, image = :image WHERE id=:id');
-$oeuvreUpd->execute([
+$artworkUpd = $mysqlClient->prepare('UPDATE `artworks` SET title = :title, description = :description, author = :author, image = :image WHERE id=:id');
+$artworkUpd->execute([
     'title' => $title,
     'description' => $description,
     'author' => $author,
@@ -32,6 +32,6 @@ $oeuvreUpd->execute([
     'id' => $id,
     ]);
 echo '<p class="msg">Votre oeuvre a été correctement modifiée<br>
-      <a href="oeuvre.php?id=' . $updOeuvre['id'] . '">Retour</a></p>';
+      <a href="artwork.php?id=' . $updartwork['id'] . '">Retour</a></p>';
 }
-?>
+require ('templates/footer.php');

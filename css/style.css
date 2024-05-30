@@ -45,7 +45,7 @@ footer {
     font-size: 12px;
 }
 
-#liste-oeuvres {
+#artwork-list {
     display: flex;
     flex-wrap: wrap;
 }
@@ -73,16 +73,16 @@ footer {
     font-size:0.75em;
 }
 
-.oeuvre {
+.artwork {
     width: 33.33%;
     padding: 15px;
 }
 
-.oeuvre img {
+.artwork img {
     width: 100%;
 }
 
-.oeuvre h2, #detail-oeuvre h1 {
+.artwork h2, #artwork-detail h1 {
     text-transform: uppercase;
     margin-top: 0;
     margin-bottom: 0;
@@ -90,14 +90,14 @@ footer {
     font-size: 30px;
 }
 
-.oeuvre .description, #detail-oeuvre .description {
+.artwork .description, #artwork-detail .description {
     font-style: italic;
     margin-top: 0;
     font-size: 12px;
     margin-bottom: 20px;
 }
 
-#detail-oeuvre {
+#artwork-detail {
     display: flex;
     flex-wrap: wrap;
     align-items: end;
@@ -107,17 +107,17 @@ footer {
     padding: 0 15px;
 }
 
-#img-oeuvre {
+#artwork-img {
     margin-right: 25px;
 }
 
-#img-oeuvre img {
+#artwork-img img {
     max-width: 470px;
     margin: auto;
     display: block;
 }
 
-#contenu-oeuvre {
+#artwork-content {
     max-width: 470px;
 }
 
@@ -158,6 +158,7 @@ input[type="submit"] {
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     padding: 7px;
+    cursor:pointer;
 }
 
 #modifier {
@@ -189,27 +190,27 @@ input[type="submit"] {
 }
 
 @media (max-width: 850px) {
-    .oeuvre {
+    .artwork {
         width: 50%;
     }
 
-    #img-oeuvre {
+    #artwork-img {
         margin-right: 0;
         width: 100%;
     }
 
-    #img-oeuvre img {
+    #artwork-img img {
         width: 100%;
     }
 
-    #contenu-oeuvre {
+    #artwork-content {
         width: 100%;
         margin: auto;
     }
 }
 
 @media (max-width: 600px) {
-    .oeuvre {
+    .artwork {
         width: 100%;
     }
 
