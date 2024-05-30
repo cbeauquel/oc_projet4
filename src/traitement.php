@@ -13,7 +13,7 @@ function addArtwork(){
             || trim($addartwork['description']) === ''
             || strlen($addartwork['description']) < 3
         )  {
-            // header('Location: templates/fail.php');
+            header('Location: templates/fail.php');
             echo $addartwork['titre'] ."<br>";
             echo $addartwork['author'] ."<br>";
             echo $addartwork['image'] ."<br>";
@@ -33,10 +33,14 @@ function addArtwork(){
             'author' => $author,
             'image' => $image,
             ]);
-           header('Location: templates/succes.php');
+
+        $idArtworkAdded = $mysqlClient->lastInsertId();
+        header('Location: artwork.php?id=' . $mysqlClient->lastInsertId());
+        // header('Location: templates/succes.php'); 
         } 
-        $lastArtworkAdded = $mysqlClient->lastInsertId();
     }
-    else {echo $lastArtworkAdded;}
+    else {
+        echo "...";
+   }
     return;
 }
