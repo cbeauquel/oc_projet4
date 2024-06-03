@@ -12,6 +12,7 @@
         </p>
         <div class="boutons">
             <form action="modifier.php" method="POST">
+                    <input type="hidden" id="old" name="old" value="old">
                     <input type="hidden" id="id" name="id" value="<?= $artwork['idArtwork'] ?>">
                     <input type="hidden" id="title" name="title" value="<?= $artwork['title'] ?>">
                     <input type="hidden" id="author" name="author" value="<?= $artwork['author'] ?>">
