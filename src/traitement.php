@@ -1,46 +1,25 @@
 <?php
 require ('model.php');
-function addArtwork(){
-    $mysqlClient = dbConnexion();
-    $addartwork = $_POST;
-    /* Contrôle des données de formulaire*/
-    if (!empty($addartwork)) {
-       if (
-            !isset($addartwork['titre'])
-            || !filter_var($addartwork['image'], FILTER_VALIDATE_URL)
-            || empty($addartwork['artiste'])
-            || empty($addartwork['description'])
-            || trim($addartwork['description']) === ''
-            || strlen($addartwork['description']) < 3
-        )  {
-            header('Location: templates/fail.php');
-            echo $addartwork['titre'] ."<br>";
-            echo $addartwork['author'] ."<br>";
-            echo $addartwork['image'] ."<br>";
-
+function addArtwork($addArtwork){
+        $title = strip_tags($addArtwork['titre']);
+        $author = strip_tags($addArtwork['artiste']);
+        $description = strip_tags($addArtwork['description']);
+        $image = $addArtwork['image'];
+        
+        $mysqlClient = dbConnexion();
+        try{
+            $artworkAdd = $mysqlClient->prepare('INSERT INTO `artworks` (`id`, `title`, `description`, `author`, `image`) VALUES (NULL, :title, :description, :author, :image)');
+            $artworkAdd->execute([
+                'title' => $title,
+                'description' => $description,
+                'author' => $author,
+                'image' => $image,
+                ]);
+        $IdArtworkAdded = $mysqlClient->LastInsertId();
+        echo "Dernier id inséré : " . $IdArtworkAdded;
+        
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
         }
-        else {
-        /*requête d'ajout d'une oeuvre en BDD*/
-            $title = strip_tags($addartwork['titre']);
-            $author = strip_tags($addartwork['artiste']);
-            $description = strip_tags($addartwork['description']);
-            $image = $addartwork['image'];
-    
-        $artworkAdd = $mysqlClient->prepare('INSERT INTO `artworks` (`id`, `title`, `description`, `author`, `image`) VALUES (NULL, :title, :description, :author, :image)');
-        $artworkAdd->execute([
-            'title' => $title,
-            'description' => $description,
-            'author' => $author,
-            'image' => $image,
-            ]);
-
-        $idArtworkAdded = $mysqlClient->lastInsertId();
-        header('Location: artwork.php?id=' . $mysqlClient->lastInsertId());
-        // header('Location: templates/succes.php'); 
-        } 
-    }
-    else {
-        echo "...";
-   }
-    return;
-}
+        return $IdArtworkAdded;
+    } 

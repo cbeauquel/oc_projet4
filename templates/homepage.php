@@ -1,5 +1,4 @@
 <?php $title = "The ArtBox"; ?>
-
 <?php ob_start(); ?>
            <div id="artwork-list">
                 <?php foreach($artworks as $artwork): ?>
