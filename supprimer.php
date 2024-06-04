@@ -1,5 +1,5 @@
 <?php 
-require ('src/suppression.php');
+require ('src/model.php');
 $delArtworkId = $_POST['id'];
 if (isset($_POST['go'])) {
      $delArtworkGo = $_POST['go'];

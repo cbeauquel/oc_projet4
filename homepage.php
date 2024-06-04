@@ -1,6 +1,6 @@
 <?php
-    require 'src/model.php';
+    require('src/model.php');
 
     $artworks = getArtworks();
 
-    require 'templates/homepage.php';
+    require('templates/homepage.php');

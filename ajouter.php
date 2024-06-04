@@ -1,6 +1,6 @@
 <?php
-    require('src/traitement.php');
     $addArtwork = $_POST;
+    require('src/model.php');
     /* Contrôle des données de formulaire*/
     if (empty($addArtwork)) {
         require('templates/ajouter.php');

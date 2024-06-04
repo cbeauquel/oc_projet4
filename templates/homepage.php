@@ -3,10 +3,10 @@
            <div id="artwork-list">
                 <?php foreach($artworks as $artwork): ?>
                     <article class="artwork">
-                        <a href="artwork.php?id=<?= urlencode($artwork['idArtwork']) ?>">
-                            <img src="<?= $artwork['image'] ?>" alt="<?= $artwork['title'] ?>">
-                            <h2><?= $artwork['title'] ?></h2>
-                            <p class="description"><?= $artwork['author'] ?></p>
+                        <a href="artwork.php?id=<?= urlencode($artwork->id) ?>">
+                            <img src="<?= $artwork->image ?>" alt="<?= $artwork->title ?>">
+                            <h2><?= $artwork->title ?></h2>
+                            <p class="description"><?= $artwork->author ?></p>
                         </a>
                     </article>
                 <?php endforeach; ?>

@@ -15,7 +15,7 @@
     }
     else {
     /*requête de modification d'une oeuvre en BDD*/
-        require ('src/modification.php');
+        require ('src/model.php');
         artworkUpdate($updArtwork);
         require('templates/mod-succes.php');
     }

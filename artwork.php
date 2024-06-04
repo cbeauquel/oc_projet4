@@ -11,7 +11,7 @@
     }
 
     $artwork = getArtwork ($idArtwork);
-    $description = str_replace("\"", "&quot", $artwork['description']);
+    $description = str_replace("\"", "&quot", $artwork->description);
 
     // Si aucune oeuvre trouvé, on redirige vers la page d'accueil
     if(is_null($artwork)) {
