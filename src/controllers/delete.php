@@ -8,7 +8,9 @@ function delArtworkPage($delArtworkId){
         $delArtworkGo = null;
     }
     if (isset($delArtworkGo) && isset($delArtworkId) && $delArtworkId > 0 ){
-        delArtwork($delArtworkId);
+        $repository = new ArtworkRepository();
+        $repository->delArtwork($delArtworkId);
+      
         require ('templates/del-succes.php');
     }
     elseif (!isset($delArtworkId)){

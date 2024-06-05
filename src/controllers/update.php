@@ -18,7 +18,8 @@ function artworkUpdatePage(){
     else {
     /*requête de modification d'une oeuvre en BDD*/
         require_once('src/model/model.php');
-        artworkUpdate($updArtwork);
+        $repository = new ArtworkRepository();
+        $repository->artworkUpdate($updArtwork);
         require('templates/mod-succes.php');
     }
 }

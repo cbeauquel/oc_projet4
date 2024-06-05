@@ -16,7 +16,8 @@ function addArtworkPage($addArtwork){
     require('templates/fail.php');
     } else {
         /*requête d'ajout d'une oeuvre en BDD*/
-        $IdArtworkAdded = addArtwork($addArtwork);
+        $repository = new ArtworkRepository();
+        $IdArtworkAdded = $repository->addArtwork($addArtwork);
         require('templates/succes.php');
     }
 }

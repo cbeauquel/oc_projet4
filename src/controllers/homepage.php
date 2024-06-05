@@ -1,7 +1,7 @@
 <?php
 require_once('src/model/model.php');
 function homepage() {
-    $artworks = getArtworks();
-
+    $artworkRepository = new ArtworkRepository();
+    $artworks = $artworkRepository->getArtworks();
     require('templates/homepage.php');
 }
