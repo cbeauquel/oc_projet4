@@ -1,6 +1,8 @@
 <?php
-    $updArtwork = $_POST;
+
     /* Contrôle des données de formulaire*/
+function artworkUpdatePage(){
+    $updArtwork = $_POST;
     if (isset($updArtwork['old'])) {
         require('templates/modifier.php');
     } elseif (
@@ -15,7 +17,8 @@
     }
     else {
     /*requête de modification d'une oeuvre en BDD*/
-        require ('src/model.php');
+        require_once('src/model/model.php');
         artworkUpdate($updArtwork);
         require('templates/mod-succes.php');
     }
+}

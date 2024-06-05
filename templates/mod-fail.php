@@ -8,6 +8,6 @@
             <li><?=$updArtwork['image'];?></li>
             <li><?=$updArtwork['description'];?></li>
         </ul>
-    <p class="alert"><a href="../artwork.php?id=<?=urlencode($updArtwork['id'])?>">Réessayer</a></p>
+    <p class="alert"><a href="index.php?artwork&id=<?=urlencode($updArtwork['id'])?>">Réessayer</a></p>
 <?php $content = ob_get_clean(); ?>
 <?php require('layout.php') ?>

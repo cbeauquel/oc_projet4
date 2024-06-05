@@ -8,26 +8,9 @@ class Artwork
     public string $image;
     public string $description;
 }
-$artwork = new Artwork();
 
 /*connexion à la base de donnée*/
-function dbConnexion() {
-    try {
-        $mysqlClient=new PDO(
-        'mysql:host=localhost;dbname=artbox',
-        'root',
-        '',
-        /*activation des messages d'erreur sur les requêtes SQL*/
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
-    );
-    } catch (Exception $e) {
-        die('Erreur : '. $e->getMessage());
-    }
-
-    return $mysqlClient;
-}
-
-/*Extraction de la liste des oeuvres*/
+ /*Extraction de la liste des oeuvres*/
 function getArtworks(): array {
     $mysqlClient = dbConnexion();
     $artworksStatement = $mysqlClient->prepare('SELECT * FROM artworks ORDER BY id ASC');
@@ -107,4 +90,20 @@ function delArtwork($delArtworkId) {
     ]);
 
     return;
+}
+
+function dbConnexion() {
+    try {
+        $mysqlClient=new PDO(
+        'mysql:host=localhost;dbname=artbox',
+        'root',
+        '',
+        /*activation des messages d'erreur sur les requêtes SQL*/
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
+    );
+    } catch (Exception $e) {
+        die('Erreur : '. $e->getMessage());
+    }
+
+    return $mysqlClient;
 }

@@ -3,7 +3,7 @@
            <div id="artwork-list">
                 <?php foreach($artworks as $artwork): ?>
                     <article class="artwork">
-                        <a href="artwork.php?id=<?= urlencode($artwork->id) ?>">
+                        <a href="index.php?action=artwork&id=<?= urlencode($artwork->id) ?>">
                             <img src="<?= $artwork->image ?>" alt="<?= $artwork->title ?>">
                             <h2><?= $artwork->title ?></h2>
                             <p class="description"><?= $artwork->author ?></p>

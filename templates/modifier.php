@@ -1,6 +1,6 @@
 <?php $title = "The ArtBox - modification œuvre"; ?>
 <?php ob_start(); ?>
-<form action="modifier.php" method="POST">
+<form action="index.php?action=updartwork" method="POST">
     <input type="hidden" id="id" name="id" value="<?= $_POST['id'] ?>">
     <div class="champ-formulaire">
         <label for="titre">Titre de l'œuvre</label>

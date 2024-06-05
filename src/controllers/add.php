@@ -1,7 +1,8 @@
 <?php
-    $addArtwork = $_POST;
-    require('src/model.php');
+
+require_once('src/model/model.php');
     /* Contrôle des données de formulaire*/
+function addArtworkPage($addArtwork){
     if (empty($addArtwork)) {
         require('templates/ajouter.php');
     } elseif (
@@ -18,3 +19,4 @@
         $IdArtworkAdded = addArtwork($addArtwork);
         require('templates/succes.php');
     }
+}
