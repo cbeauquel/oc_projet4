@@ -2,7 +2,7 @@
     require 'header.php';
     require 'bdd.php';
     // Si l'URL ne contient pas d'id ou aucune oeuvre trouvée, on redirige sur la page d'accueil
-    if(empty($_GET['id']) && is_null($oeuvre)) {
+    if(empty($_GET['id']) || is_null($oeuvre)) {
         header('Location: index.php');
     }
 
