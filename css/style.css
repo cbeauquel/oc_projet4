@@ -45,11 +45,32 @@ footer {
     font-size: 12px;
 }
 
-
-
 #liste-oeuvres {
     display: flex;
     flex-wrap: wrap;
+}
+
+.msg {
+    text-align:center;
+    font-size:2em;
+}
+
+.msg a{
+    text-decoration:underline;
+    color:black;
+    font-size:0.75em;
+}
+
+.alert {
+    text-align:center;
+    font-size:1.5em;
+    color:red;
+}
+
+.alert a{
+    text-decoration:underline;
+    color:black;
+    font-size:0.75em;
 }
 
 .oeuvre {
