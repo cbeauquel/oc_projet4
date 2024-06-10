@@ -17,4 +17,23 @@ catch (Exception $e) {
 $oeuvresStatement = $mysqlClient->prepare('SELECT * FROM oeuvres ORDER BY id ASC');
 $oeuvresStatement->execute();
 $oeuvres = $oeuvresStatement->fetchAll();
+
+
+/*requête de récupération d'une oeuvre avec un ID en GET*/
+// Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
+if(isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $oeuvreStatement = $mysqlClient->prepare('SELECT * FROM oeuvres WHERE id=:id');
+    $oeuvreStatement->execute([
+        'id' => $id,]);
+    $row = $oeuvreStatement->fetch();
+    if ($row){
+        $oeuvre['id'] = $row['id'];
+        $oeuvre['title'] = $row['title'];
+        $oeuvre['author'] = $row['author'];
+        $oeuvre['image'] = $row['image'];
+        $oeuvre['description'] = $row['description'];
+    }
+}
 ?>
