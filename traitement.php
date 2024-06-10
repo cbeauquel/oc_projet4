@@ -6,13 +6,18 @@ $addOeuvre = $_POST;
 /* Contrôle des données de formulaire*/
 if (
     !isset($addOeuvre['titre'])
+    || empty($addOeuvre['titre'])
+    || trim($addOeuvre['titre']) === ''
+    || !isset($addOeuvre['artiste'])
+    || empty($addOeuvre['artiste'])
+    || trim($addOeuvre['artiste']) === ''
     || !filter_var($addOeuvre['image'], FILTER_VALIDATE_URL)
     || empty($addOeuvre['description'])
     || trim($addOeuvre['description']) === ''
     || strlen($addOeuvre['description']) < 3
 )  {
-    echo '<p class="alert">Il faut une url d\'image et un message valides pour ajouter votre oeuvre.<br>
-    <a href="index.php">Retour</a></p>';
+    echo '<p class="alert">Il faut un titre, un artiste, une url d\'image et un message valides pour ajouter votre œuvre.<br>
+    <a href="ajouter.php">Retour</a></p>';
 }
 else {
 /*requête d'ajout d'une oeuvre en BDD*/
