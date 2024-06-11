@@ -1,4 +1,8 @@
 <?php 
+namespace Application\model\artwork;
+
+require_once('src/lib/database.php');
+
 /*Création d'un objet oeuvre*/
 class Artwork
 {
@@ -13,13 +17,13 @@ class ArtworkRepository
 {
     /* connexion à la base de donnée */
     //public ?PDO $mysqlCLient = null;
-    private ?PDO $mysqlClient = null;
+    //private ?PDO $mysqlClient = null;
+    public \DbConnexion $connexion;
 
     /*Extraction de la liste des oeuvres*/
     public function getArtworks(): array 
     {
-        $this->dbConnexion();
-        $artworksStatement = $this->mysqlClient->prepare('SELECT * FROM artworks ORDER BY id ASC');
+        $artworksStatement = $this->connexion->getConnexion()->prepare('SELECT * FROM artworks ORDER BY id ASC');
         $artworksStatement->execute();
         $artworks = [];
         while ($row = $artworksStatement->fetch()) {
@@ -37,8 +41,7 @@ class ArtworkRepository
 
     /*Extraction d'une oeuvre*/
     public function getArtwork(int $idArtwork): ?Artwork{
-        $this->dbConnexion();
-        $artworkStatement = $this->mysqlClient->prepare('SELECT * FROM artworks WHERE id = :id');
+        $artworkStatement = $this->connexion->getConnexion()->prepare('SELECT * FROM artworks WHERE id = :id');
         $artworkStatement->execute([
             'id' => $idArtwork,
         ]);
@@ -55,29 +58,10 @@ class ArtworkRepository
         return 'prout';
     }
 
-    public function dbConnexion() 
-    {
-        if ($this->mysqlClient === null) 
-        {
-            try {
-                $this->mysqlClient = new PDO(
-                'mysql:host=localhost;dbname=artbox',
-                'root',
-                '',
-                /*activation des messages d'erreur sur les requêtes SQL*/
-                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
-            );
-            } catch (Exception $e) {
-                die('Erreur : '. $e->getMessage());
-            }
-        }
-    }
-
     /*Ajout d'une oeuvre*/
     function addArtwork($addArtwork): array{
-        $this->dbConnexion();
         try{
-            $artworkAdd = $this->mysqlClient->prepare('INSERT INTO `artworks` (`id`, `title`, `description`, `author`, `image`) VALUES (NULL, :title, :description, :author, :image)');
+            $artworkAdd = $this->connexion->getConnexion()->prepare('INSERT INTO `artworks` (`id`, `title`, `description`, `author`, `image`) VALUES (NULL, :title, :description, :author, :image)');
             $artworkAdd->execute([
                 'title' => $addArtwork['titre'],
                 'description' => $addArtwork['description'],
@@ -100,8 +84,7 @@ class ArtworkRepository
         $description = strip_tags($updArtwork['description']);
         $image = $updArtwork['image'];
         $updId = $updArtwork['id'];
-        $this->dbConnexion();
-        $artworkUpd = $this->mysqlClient->prepare('UPDATE `artworks` SET title = :title, description = :description, author = :author, image = :image WHERE id=:id');
+        $artworkUpd = $this->connexion->getConnexion()->prepare('UPDATE `artworks` SET title = :title, description = :description, author = :author, image = :image WHERE id=:id');
         $artworkUpd->execute([
             'title' => $title,
             'description' => $description,
@@ -111,11 +94,9 @@ class ArtworkRepository
             ]);
         }
 
-
         /*Suppression d'une oeuvre en BDD*/
         function delArtwork($delArtworkId): int {
-            $this->dbConnexion();
-            $delArtwork = $this->mysqlClient->prepare('DELETE FROM `artworks` WHERE id=:id');
+            $delArtwork = $this->connexion->getConnexion()->prepare('DELETE FROM `artworks` WHERE id=:id');
             $delArtwork->execute([
             'id' => $delArtworkId,
             ]);
