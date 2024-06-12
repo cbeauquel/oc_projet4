@@ -95,14 +95,12 @@ class ArtworkRepository
         }
 
         /*Suppression d'une oeuvre en BDD*/
-        function delArtwork($delArtworkId): int {
+        function delArtwork($delArtworkId) {
             $delArtwork = $this->connexion->getConnexion()->prepare('DELETE FROM `artworks` WHERE id=:id');
             $delArtwork->execute([
             'id' => $delArtworkId,
             ]);
-
     }
-
 }
 
 
